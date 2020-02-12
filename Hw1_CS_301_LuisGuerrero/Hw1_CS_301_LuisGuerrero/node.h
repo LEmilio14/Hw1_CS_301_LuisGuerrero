@@ -1,25 +1,25 @@
 #pragma once
 #include <string>
 
-template<typename T>
+
 struct node
 {
-	T& data;
-	node<T>* next;
+	std::string& data;
+	node* next;
 
-	node(T&);
-	node(T&, node<T>*);
+	node(std::string&);
+	node(std::string&, node*);
 	virtual ~node() = default;
 };
 
-template <typename T>
-node<T>::node(T& d) : data(d), next(nullptr)
+
+node::node(std::string& d) : data(d), next(nullptr)
 {
 
 }
 
-template <typename T>
-node<T>::node(T& d, node<T>* n) : data(d), next(n)
+
+node::node(std::string& d, node* n) : data(d), next(n)
 {
 
 }

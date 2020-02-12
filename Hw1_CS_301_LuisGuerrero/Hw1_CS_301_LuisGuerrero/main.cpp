@@ -35,12 +35,11 @@ int main()
 
 	}
 
-	list<string&> magicianList;
+	list magicianList;
 
 	while (getline(inFileN, name))
 	{
-		string temp = name;
-		magicianList.insertFirst(temp);
+		magicianList.insertLast(name);
 	}
 
 	magicianList.printLinkedList();
@@ -59,7 +58,7 @@ int main()
 		return 0;
 	}
 
-	list<string> holidayList;
+	list holidayList;
 
 	while (getline(inFileH, holidays))
 	{
@@ -70,11 +69,11 @@ int main()
 	inFileH.close();
 	inFileN.close();
 
-	list<list<string>> waitingList;
-	list<list<string>> bookingHoliday;
-	list<list<string>> bookingMagician;
-	list<string> customer_holiday;
-	list<string> magician_holiday;
+	list waitingList;
+	list bookingHoliday;
+	list bookingMagician;
+	list customer_holiday;
+	list magician_holiday;
 
 	do
 	{
@@ -105,13 +104,7 @@ int main()
 					magician.resize(20, ' ');
 
 					cout << "CUSTOMER: " << customerName << "	MAGICIAN: " << magician << "HOLIDAY: " << holidayName << endl << endl;
-					customer_holiday.insertFirst(customerName);
-					customer_holiday.insertLast(holidayName);
-					bookingHoliday.insertFirst(customer_holiday);
-
-					magician_holiday.insertFirst(magician);
-					magician_holiday.insertLast(holidayName);
-					bookingMagician.insertFirst(magician_holiday);
+					
 
 					//outFile << "CUSTOMER: " << customerName << "MAGICIAN: " << magician << "HOLIDAY: " << holidayName << endl << endl;
 

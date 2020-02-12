@@ -3,7 +3,7 @@
 
 #include"node.h"
 
-template <typename T>
+
 class list
 {
 public:
@@ -13,12 +13,12 @@ public:
 	bool isEmpty() const;
 	int getCount() const;
 
-	virtual node<T>* insert(T&, const int);
-	virtual node<T>* insertFirst(T&);
-	virtual node<T>* insertLast(T&);
+	virtual node* insert(std::string&, const int);
+	virtual node* insertFirst(std::string&);
+	virtual node* insertLast(std::string&);
 	void removeNode(const int);
 	void removeNodeByName(std::string&);
-	T& getAvailable();
+	std::string& getAvailable();
 	bool checkAvailable();
 
 	void printLinkedList();
@@ -26,65 +26,65 @@ public:
 
 protected:
 	int count;
-	node<T>* head;
+	node* head;
 
 };
 
-template <typename T>
-list<T>::list() : count(0), head(nullptr)
+
+list::list() : count(0), head(nullptr)
 {
 }
 
-template <typename T>
-list<T>::~list()
+
+list::~list()
 {
 }
 
-template <typename T>
-bool list<T>::isEmpty() const
+
+bool list::isEmpty() const
 {
 	return count == 0;
 }
 
-template <typename T>
-int list<T>::getCount() const
+
+int list::getCount() const
 {
 	return count;
 }
 
-template <typename T>
-node<T>* list<T>::insert(T& names, const int position)
+
+node* list::insert(std::string& names, const int position)
 {
 	if (position < 0 || position > count)
 	{
 		throw "error";
 	}
 
-	node<T>* returnNode;
+	node* returnNode;
 
 	if (head == nullptr) //list is empty
 	{ 
-		head = new node<T>(names);
+		head = new node(names);
 
 		returnNode = head;
 	}
 	else if (position == 0)//replacing head
 	{
-		node<T>* temp = head;
-		head = new node<T>(names, temp);
+		node* temp = head;
+		head = new node(names, temp);
 
 		returnNode = head;
 	}
 	else
 	{
-		node<T>* currentNode = head;
+		node* currentNode = head;
 		for (int i = 0; i < position - 1; i++)
 		{
 			currentNode = currentNode->next;
 		}
 
-		node<T>* temp = currentNode->next;
-		currentNode->next = new node<T>(names, temp);
+		node* temp = currentNode->next;
+		currentNode->next = new node(names, temp);
 
 		returnNode = currentNode->next;
 	}
@@ -93,20 +93,20 @@ node<T>* list<T>::insert(T& names, const int position)
 	return returnNode;
 }
 
-template <typename T>
-node<T>* list<T>::insertFirst(T& name)
+
+node* list::insertFirst(std::string& name)
 {
 	return insert(name, 0);
 }
 
-template <typename T>
-node<T>* list<T>::insertLast(T& name)
+
+node* list::insertLast(std::string& name)
 {
 	return insert(name, count);
 }
 
-template <typename T>
-void list<T>::removeNode(int position)
+
+void list::removeNode(int position)
 {
 	if (position < 0 || position > count - 1)
 	{
@@ -119,15 +119,15 @@ void list<T>::removeNode(int position)
 
 	if (position == 0)
 	{
-		node<T>* currentNode = head->next;
+		node* currentNode = head->next;
 		delete head;
 
 		head = currentNode;
 	}
 	else
 	{
-		node<T>* prevNode = nullptr;
-		node<T>* currNode = head;
+		node* prevNode = nullptr;
+		node* currNode = head;
 		for (int i = 0; i < position; i++)
 		{
 			prevNode = currNode;
@@ -140,10 +140,10 @@ void list<T>::removeNode(int position)
 	return;
 }
 
-template <typename T>
-void list<T>::removeNodeByName(std::string& nameToDelete)
+
+void list::removeNodeByName(std::string& nameToDelete)
 {
-	node<T>* currentNode = head;
+	node* currentNode = head;
 
 	for (int i = 0; i < count; i++)
 	{
@@ -159,10 +159,10 @@ void list<T>::removeNodeByName(std::string& nameToDelete)
 	}
 }
 
-template <typename T>
-T& list<T>::getAvailable()
+
+std::string& list::getAvailable()
 {
-	node<T>* currentNode = head;
+	node* currentNode = head;
 	std::string& temp = currentNode->data;
 
 	while (currentNode->data == "0" || currentNode->next != nullptr)
@@ -174,10 +174,10 @@ T& list<T>::getAvailable()
 	return temp;
 }
 
-template <typename T>
-bool list<T>::checkAvailable()
+
+bool list::checkAvailable()
 {
-	node<T>* tempNode = head;
+	node* tempNode = head;
 	while (tempNode->data == "0"|| tempNode->next != nullptr)
 	{
 		tempNode = tempNode->next;
@@ -185,10 +185,10 @@ bool list<T>::checkAvailable()
 	return true;
 }
 
-template <typename T>
-void list<T>::printLinkedList()
+
+void list::printLinkedList()
 {
-	node<T>* currentNode;
+	node* currentNode;
 	currentNode = head;
 
 	while (currentNode->next != nullptr)
@@ -198,10 +198,10 @@ void list<T>::printLinkedList()
 	}
 }
 
-template <typename T>
-void list<T>::printHolidays()
+
+void list::printHolidays()
 {
-	node<T>* currentNode = head;
+	node* currentNode = head;
 	std::string space = " ";
 	space.resize(20, ' ');
 	while (currentNode->next != nullptr)
