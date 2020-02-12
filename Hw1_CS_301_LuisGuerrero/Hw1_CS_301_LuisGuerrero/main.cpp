@@ -14,7 +14,7 @@ int main()
 {
 	ifstream inFileN, inFileH;
 	ofstream outFile;
-	string inFileName, outFileName, names, customerName;
+	string inFileName, outFileName, name, customerName;
 	string inFileHol, outFileHoli, holidayName, holidays;
 	int userOption, userAgain = 0;
 
@@ -35,12 +35,12 @@ int main()
 
 	}
 
-	list<string> magicianList;
+	list<string&> magicianList;
 
-	while (getline(inFileN, names))
+	while (getline(inFileN, name))
 	{
-		string temp = names;
-		magicianList.insertFirst(names);
+		string temp = name;
+		magicianList.insertFirst(temp);
 	}
 
 	magicianList.printLinkedList();

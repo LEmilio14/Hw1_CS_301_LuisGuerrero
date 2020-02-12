@@ -63,7 +63,7 @@ node<T>* list<T>::insert(T& names, const int position)
 	node<T>* returnNode;
 
 	if (head == nullptr) //list is empty
-	{
+	{ 
 		head = new node<T>(names);
 
 		returnNode = head;
