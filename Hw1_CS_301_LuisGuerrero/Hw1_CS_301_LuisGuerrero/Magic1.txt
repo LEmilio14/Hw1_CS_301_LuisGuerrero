@@ -1,0 +1,4 @@
+CUSTOMER: Emilio G            MAGICIAN: Dennis Kyriakos     HOLIDAY: Labor Day
+
+CUSTOMER: Anahi P             MAGICIAN: Dan Chan            HOLIDAY: MLK Day
+

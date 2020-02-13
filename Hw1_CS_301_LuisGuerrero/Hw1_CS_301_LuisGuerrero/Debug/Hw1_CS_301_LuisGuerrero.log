@@ -1,2 +1,3 @@
 ﻿  main.cpp
-LINK : fatal error LNK1168: cannot open C:\Users\Diego Admin\Documents\GitHub\Hw1_CS_301_LuisGuerrero\Hw1_CS_301_LuisGuerrero\Debug\Hw1_CS_301_LuisGuerrero.exe for writing
+main.obj : error LNK2019: unresolved external symbol "public: void __thiscall list::printHolidays(void)" (?printHolidays@list@@QAEXXZ) referenced in function _main
+C:\Users\Diego Admin\Documents\GitHub\Hw1_CS_301_LuisGuerrero\Hw1_CS_301_LuisGuerrero\Debug\Hw1_CS_301_LuisGuerrero.exe : fatal error LNK1120: 1 unresolved externals

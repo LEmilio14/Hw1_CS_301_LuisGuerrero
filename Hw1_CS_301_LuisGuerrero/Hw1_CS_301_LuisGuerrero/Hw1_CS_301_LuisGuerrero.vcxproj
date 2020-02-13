@@ -142,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Holidays.txt" />
+    <Text Include="Magic1.txt" />
     <Text Include="Magician.txt" />
   </ItemGroup>
   <ItemGroup>

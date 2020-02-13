@@ -3,7 +3,6 @@
 
 #include"node.h"
 
-
 class list
 {
 public:
@@ -13,16 +12,19 @@ public:
 	bool isEmpty() const;
 	int getCount() const;
 
-	virtual node* insert(std::string&, const int);
-	virtual node* insertFirst(std::string&);
-	virtual node* insertLast(std::string&);
+	node* insert(std::string&, const int);
+	node* insertFirst(std::string&);
+	node* insertLast(std::string&);
 	void removeNode(const int);
 	void removeNodeByName(std::string&);
-	std::string& getAvailable();
+	void removeAllNodes();
+	std::string getAvailable();
+	std::string& getData(const int);
+	std::string& getFirstData();
 	bool checkAvailable();
 
 	void printLinkedList();
-	void printHolidays();
+	void printListCus_Hol();
 
 protected:
 	int count;
@@ -93,7 +95,6 @@ node* list::insert(std::string& names, const int position)
 	return returnNode;
 }
 
-
 node* list::insertFirst(std::string& name)
 {
 	return insert(name, 0);
@@ -106,7 +107,7 @@ node* list::insertLast(std::string& name)
 }
 
 
-void list::removeNode(int position)
+void list::removeNode(const int position)
 {
 	if (position < 0 || position > count - 1)
 	{
@@ -149,6 +150,7 @@ void list::removeNodeByName(std::string& nameToDelete)
 	{
 		if (currentNode->data == nameToDelete)
 		{
+			
 			removeNode(i);
 			return;
 		}
@@ -157,15 +159,39 @@ void list::removeNodeByName(std::string& nameToDelete)
 			currentNode = currentNode->next;
 		}
 	}
+	std::cout << "Data could not be found..." << std::endl;
+}
+
+void list::removeAllNodes()
+{
+	if (head == nullptr)
+	{
+		return;
+	}
+	else
+	{
+		node* currentNode = head;
+		while (currentNode->next != nullptr)
+		{
+			node* previousNode = currentNode;
+			currentNode = currentNode->next;
+			delete previousNode;
+		}
+		delete currentNode;
+	}
+	count = 0; 
+	head = nullptr;
+
+	return;
 }
 
 
-std::string& list::getAvailable()
+std::string list::getAvailable()
 {
 	node* currentNode = head;
-	std::string& temp = currentNode->data;
+	std::string temp;
 
-	while (currentNode->data == "0" || currentNode->next != nullptr)
+	while (currentNode->data == "0" && currentNode->next != nullptr)
 	{
 		currentNode = currentNode->next;
 	}
@@ -175,31 +201,55 @@ std::string& list::getAvailable()
 }
 
 
+std::string& list::getData(const int pos)
+{
+	if (head == nullptr) //The list is empty
+	{
+		throw "List is empty";
+	}
+
+	if (pos < 0 || pos > count - 1)
+	{
+		throw "Index out of range.";
+	}
+
+	node* currentNode = head;
+	for (int i = 0; i < pos; i++)
+	{
+		currentNode = currentNode->next;
+	}
+
+	return currentNode->data;
+}
+
+
+std::string& list::getFirstData()
+{
+	return getData(0);
+}
+
+
 bool list::checkAvailable()
 {
 	node* tempNode = head;
-	while (tempNode->data == "0"|| tempNode->next != nullptr)
+	bool available = false;
+	while (tempNode->data == "0")
 	{
-		tempNode = tempNode->next;
+		if(tempNode->next != nullptr)
+		{
+			tempNode = tempNode->next;
+		}
+		else 
+		{
+			return available;
+		}
 	}
-	return true;
+	available = true;
+	return available;
 }
 
 
 void list::printLinkedList()
-{
-	node* currentNode;
-	currentNode = head;
-
-	while (currentNode->next != nullptr)
-	{
-		std::cout << currentNode->data << std::endl;
-		currentNode = currentNode->next;
-	}
-}
-
-
-void list::printHolidays()
 {
 	node* currentNode = head;
 	std::string space = " ";
@@ -208,5 +258,22 @@ void list::printHolidays()
 	{
 		std::cout << space << currentNode->data << std::endl;
 		currentNode = currentNode->next;
+	}
+}
+
+void list::printListCus_Hol()
+{
+	node* currentNode = head;
+	node* previousNode = currentNode->next;
+	
+	while (currentNode->next != nullptr )
+	{
+		std::string c = currentNode->data;
+		c.resize(20, ' ');
+		std::string h = previousNode->data;
+		h.resize(20, ' ');
+		std::cout << "CUSTOMER: " << c << "HOLIDAY: " << h << std::endl;
+		currentNode = previousNode->next;
+		previousNode->next = currentNode->next;
 	}
 }

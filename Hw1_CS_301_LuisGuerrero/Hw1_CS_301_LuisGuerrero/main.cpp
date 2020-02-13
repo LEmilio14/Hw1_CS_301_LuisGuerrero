@@ -14,11 +14,11 @@ int main()
 {
 	ifstream inFileN, inFileH;
 	ofstream outFile;
-	string inFileName, outFileName, name, customerName;
+	string inFileName, outFileName, name, customerName, magician;
 	string inFileHol, outFileHoli, holidayName, holidays;
 	int userOption, userAgain = 0;
 
-	outFile.open("Magic.txt");
+	outFile.open("Magic1.txt");
 
 
 	cout << "Enter the name of the magicians file you want to open: ";
@@ -65,6 +65,8 @@ int main()
 		holidayList.insertLast(holidays);
 	}
 
+	holidayList.printLinkedList();
+	system("pause");
 
 	inFileH.close();
 	inFileN.close();
@@ -72,8 +74,7 @@ int main()
 	list waitingList;
 	list bookingHoliday;
 	list bookingMagician;
-	list customer_holiday;
-	list magician_holiday;
+	list copyMagicianList = magicianList;
 
 	do
 	{
@@ -92,40 +93,43 @@ int main()
 				getline(cin.ignore(), customerName);
 				cout << endl;
 
-				holidayList.printHolidays();
 				cout << "Please enter the name of the holiday the customer wants: ";
 				getline(cin, holidayName);
 				cout << endl;
 
-				if (magicianList.checkAvailable() == true)
-				{
-					string magician = magicianList.getAvailable();
-					customerName.resize(20, ' ');
-					magician.resize(20, ' ');
-
-					cout << "CUSTOMER: " << customerName << "	MAGICIAN: " << magician << "HOLIDAY: " << holidayName << endl << endl;
-					
-
-					//outFile << "CUSTOMER: " << customerName << "MAGICIAN: " << magician << "HOLIDAY: " << holidayName << endl << endl;
-
-
-					cout << "Would you like to schedule for another holiday? [1]YES [2]NO" << endl;
-					cin >> userAgain;
-
-
-				}
-				else
+				if (copyMagicianList.checkAvailable() != true)
 				{
 					cout << "There are no magicians available" << endl;
 					cout << "You are currently on the waiting list..." << endl << endl;
-					//waitingList.insertLast(customerName);
-					//waitingList.insertLast(holidayName);
+					waitingList.insertLast(customerName);
+					waitingList.insertLast(holidayName);
+				}
+				else
+				{
+					magician = copyMagicianList.getAvailable();
 
+					bookingHoliday.insertLast(customerName);
+					bookingHoliday.insertLast(holidayName);
 
+					bookingMagician.insertLast(magician);
+					bookingMagician.insertLast(holidayName);
+
+					string c = customerName;
+					c.resize(20, ' ');
+					string m = magician;
+					m.resize(20, ' ');
+					
+					cout << "CUSTOMER: " << c << "	MAGICIAN: " << m << "HOLIDAY: " << holidayName << endl << endl;
+
+					outFile << "CUSTOMER: " << c << "MAGICIAN: " << m << "HOLIDAY: " << holidayName << endl << endl;
 				}
 
-
+				cout << "Would you like to schedule for another holiday? [1]YES [2]NO" << endl;
+				cin >> userAgain;
 			} while (userAgain == 1);
+
+			bookingHoliday.printListCus_Hol();
+			system("pause");
 			break;
 		case 2:
 			system("CLS");
@@ -135,10 +139,26 @@ int main()
 			cout << endl;
 
 			cout << "Enter the name of the holiday the magician was schedule: ";
-			getline(cin.ignore(), holidayName);
+			getline(cin, holidayName);
 			cout << endl;
 
+			bookingHoliday.removeNodeByName(customerName);
+			bookingHoliday.removeNodeByName(holidayName);
 
+			bookingMagician.removeNodeByName(holidayName);
+			bookingMagician.removeNodeByName(magician);
+
+			if (waitingList.getCount() != 0)
+			{
+				string customerN = waitingList.getFirstData();
+				waitingList.removeNodeByName(customerN);
+
+				string holidayN = waitingList.getFirstData();
+				waitingList.removeNodeByName(holidayN); 
+
+				bookingHoliday.insertLast(customerN);
+				bookingHoliday.insertLast(holidayN);
+			}
 
 			break;
 		case 3:

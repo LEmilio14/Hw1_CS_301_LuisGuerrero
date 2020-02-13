@@ -1,10 +1,9 @@
 #pragma once
 #include <string>
 
-
 struct node
 {
-	std::string& data;
+	std::string data;
 	node* next;
 
 	node(std::string&);

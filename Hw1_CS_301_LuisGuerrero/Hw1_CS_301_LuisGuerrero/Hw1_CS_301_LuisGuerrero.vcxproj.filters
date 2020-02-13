@@ -26,6 +26,9 @@
     <Text Include="Holidays.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="Magic1.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="node.h">
