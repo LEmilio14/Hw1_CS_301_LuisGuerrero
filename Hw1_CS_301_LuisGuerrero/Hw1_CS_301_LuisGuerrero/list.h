@@ -19,9 +19,13 @@ public:
 	void removeNodeByName(std::string&);
 	void removeAllNodes();
 	std::string getAvailable();
+	std::string getHoliday(std::string);
 	std::string& getData(const int);
 	std::string& getFirstData();
+	std::string& getMagician(std::string);
+	std::string& getCustomerWaiting(std::string);
 	bool checkAvailable();
+	bool checkHolidayWaiting(std::string);
 
 	void printLinkedList();
 	void printListCus_Hol();
@@ -200,6 +204,25 @@ std::string list::getAvailable()
 	return temp;
 }
 
+std::string list::getHoliday(std::string holidayName)
+{
+	node* currNode = head;
+	std::string returnHoliday = holidayName;
+
+	for (int i = 0; i < count; i++)
+	{
+		if (currNode->data == holidayName)
+		{
+			return currNode->data;
+		}
+		else
+		{
+			currNode = currNode->next;
+		}
+	}
+	return returnHoliday;
+}
+
 
 std::string& list::getData(const int pos)
 {
@@ -228,6 +251,40 @@ std::string& list::getFirstData()
 	return getData(0);
 }
 
+std::string& list::getMagician(std::string holiday)
+{
+	node* currNode = head;
+	std::string magicianFound;
+	while (currNode->next != nullptr)
+	{
+		if (currNode->data == holiday)
+		{
+			currNode = currNode->next;
+			magicianFound = currNode->data;
+			return magicianFound;
+		}
+		currNode = currNode->next;
+	}
+	return magicianFound;
+}
+
+std::string& list::getCustomerWaiting(std::string holidayName)
+{
+	node* currNode = head;
+	std::string customerName;
+	while (currNode->next != nullptr)
+	{
+		if (currNode->data == holidayName)
+		{
+			currNode = currNode->next;
+			customerName = currNode->data;
+			return customerName;
+		}
+		currNode = currNode->next;
+	}
+	return customerName;
+}
+
 
 bool list::checkAvailable()
 {
@@ -248,6 +305,23 @@ bool list::checkAvailable()
 	return available;
 }
 
+bool list::checkHolidayWaiting( std::string holidayName)
+{
+	bool check = false;
+	node* currNode = head;
+	
+	while (currNode->next != nullptr)
+	{
+		if (currNode->data == holidayName)
+		{
+			check = true;
+			return check;
+		}
+		currNode = currNode->next;
+	}
+	return check;
+}
+
 
 void list::printLinkedList()
 {
@@ -264,16 +338,23 @@ void list::printLinkedList()
 void list::printListCus_Hol()
 {
 	node* currentNode = head;
-	node* previousNode = currentNode->next;
+	node* nextNode = currentNode->next;
 	
 	while (currentNode->next != nullptr )
 	{
 		std::string c = currentNode->data;
 		c.resize(20, ' ');
-		std::string h = previousNode->data;
+		std::string h = nextNode->data;
 		h.resize(20, ' ');
 		std::cout << "CUSTOMER: " << c << "HOLIDAY: " << h << std::endl;
-		currentNode = previousNode->next;
-		previousNode->next = currentNode->next;
+		currentNode = nextNode->next;
+		if (currentNode->next != nullptr)
+		{
+			nextNode = currentNode->next;
+		}
+		else
+		{
+			break;
+		}
 	}
 }

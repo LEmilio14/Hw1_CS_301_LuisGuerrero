@@ -1,4 +1,20 @@
-CUSTOMER: Emilio G            MAGICIAN: Dennis Kyriakos     HOLIDAY: Labor Day
+CUSTOMER: Emilio Guerrero     MAGICIAN: Dennis Kyriakos     HOLIDAY: Independence Day
 
-CUSTOMER: Anahi P             MAGICIAN: Dan Chan            HOLIDAY: MLK Day
+CUSTOMER: Anahi P             MAGICIAN: Dan Chan            HOLIDAY: Labor Day
+
+CUSTOMER: Alex G              MAGICIAN: Dorian Rhodell      HOLIDAY: Columbus Day
+
+CUSTOMER: Alejo S             MAGICIAN: Ryan Kane           HOLIDAY: Veterans' Day
+
+CUSTOMER: Vero F              MAGICIAN: Alan                HOLIDAY: thanksgiving Day
+
+CUSTOMER: Alan S              MAGICIAN: Glen Michelette     HOLIDAY: Christmas Day
+
+CUSTOMER: Carlos P            MAGICIAN: Mark Robinson       HOLIDAY: President's Day
+
+CUSTOMER: Mari B              MAGICIAN: Sebastian Boswell   HOLIDAY: New Year's Day
+
+CUSTOMER: Pablo B             MAGICIAN: Gabriel Holmes      HOLIDAY: MLK Day
+
+CUSTOMER: Anita P             MAGICIAN: Heather Rogers      HOLIDAY: Thanksgiving Day
 

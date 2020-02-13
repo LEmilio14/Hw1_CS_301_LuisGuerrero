@@ -15,7 +15,7 @@ int main()
 	ifstream inFileN, inFileH;
 	ofstream outFile;
 	string inFileName, outFileName, name, customerName, magician;
-	string inFileHol, outFileHoli, holidayName, holidays;
+	string inFileHol, outFileHoli, holidayName, holidays, magicianRelocated;
 	int userOption, userAgain = 0;
 
 	outFile.open("Magic1.txt");
@@ -42,9 +42,6 @@ int main()
 		magicianList.insertLast(name);
 	}
 
-	magicianList.printLinkedList();
-	system("pause");
-
 	cout << "Enter the name of the holidays file you want to open: ";
 	cin >> inFileHol;
 	cout << endl;
@@ -64,9 +61,6 @@ int main()
 	{
 		holidayList.insertLast(holidays);
 	}
-
-	holidayList.printLinkedList();
-	system("pause");
 
 	inFileH.close();
 	inFileN.close();
@@ -93,6 +87,7 @@ int main()
 				getline(cin.ignore(), customerName);
 				cout << endl;
 
+				holidayList.printLinkedList();
 				cout << "Please enter the name of the holiday the customer wants: ";
 				getline(cin, holidayName);
 				cout << endl;
@@ -101,8 +96,9 @@ int main()
 				{
 					cout << "There are no magicians available" << endl;
 					cout << "You are currently on the waiting list..." << endl << endl;
-					waitingList.insertLast(customerName);
 					waitingList.insertLast(holidayName);
+					waitingList.insertLast(customerName);
+
 				}
 				else
 				{
@@ -110,6 +106,7 @@ int main()
 
 					bookingHoliday.insertLast(customerName);
 					bookingHoliday.insertLast(holidayName);
+					bookingHoliday.insertLast(magician);
 
 					bookingMagician.insertLast(magician);
 					bookingMagician.insertLast(holidayName);
@@ -128,8 +125,8 @@ int main()
 				cin >> userAgain;
 			} while (userAgain == 1);
 
-			bookingHoliday.printListCus_Hol();
-			system("pause");
+			//bookingHoliday.printListCus_Hol();
+			
 			break;
 		case 2:
 			system("CLS");
@@ -143,21 +140,33 @@ int main()
 			cout << endl;
 
 			bookingHoliday.removeNodeByName(customerName);
+			magicianRelocated = bookingHoliday.getMagician(holidayName);
 			bookingHoliday.removeNodeByName(holidayName);
+			bookingHoliday.removeNodeByName(magicianRelocated);
 
 			bookingMagician.removeNodeByName(holidayName);
-			bookingMagician.removeNodeByName(magician);
+			bookingMagician.removeNodeByName(magicianRelocated);
 
 			if (waitingList.getCount() != 0)
 			{
-				string customerN = waitingList.getFirstData();
-				waitingList.removeNodeByName(customerN);
+				if (waitingList.checkHolidayWaiting(holidayName) == true)
+				{
+					string waitingCustomer = waitingList.getCustomerWaiting(holidayName);
+					bookingHoliday.insertLast(waitingCustomer);
+					bookingHoliday.insertLast(holidayName);
+					bookingHoliday.insertLast(magicianRelocated);
+				}
+				else
+				{
+					string customerN = waitingList.getFirstData();
+					waitingList.removeNodeByName(customerN);
 
-				string holidayN = waitingList.getFirstData();
-				waitingList.removeNodeByName(holidayN); 
+					string holidayN = waitingList.getFirstData();
+					waitingList.removeNodeByName(holidayN);
 
-				bookingHoliday.insertLast(customerN);
-				bookingHoliday.insertLast(holidayN);
+					bookingHoliday.insertLast(customerN);
+					bookingHoliday.insertLast(holidayN);
+				}
 			}
 
 			break;
