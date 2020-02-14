@@ -1,6 +1,6 @@
 #pragma once
 #include<string>
-
+#include <fstream>
 #include"node.h"
 
 class list
@@ -22,14 +22,16 @@ public:
 	std::string getHoliday(std::string);
 	std::string& getData(const int);
 	std::string& getFirstData();
-	std::string& getMagician(std::string);
-	std::string& getCustomerWaiting(std::string);
+	std::string getMagician(std::string);
+	std::string getCustomerByMagician(std::string);
+	std::string getHolidayByMagician(std::string);
+	std::string getCustomerWaiting(std::string);
 	bool checkAvailable();
 	bool checkHolidayWaiting(std::string);
 
 	void printLinkedList();
 	void printListCus_Hol();
-
+	void printToOutputFile(std::ofstream&);
 protected:
 	int count;
 	node* head;
@@ -251,7 +253,7 @@ std::string& list::getFirstData()
 	return getData(0);
 }
 
-std::string& list::getMagician(std::string holiday)
+std::string list::getMagician(std::string holiday)
 {
 	node* currNode = head;
 	std::string magicianFound;
@@ -268,7 +270,39 @@ std::string& list::getMagician(std::string holiday)
 	return magicianFound;
 }
 
-std::string& list::getCustomerWaiting(std::string holidayName)
+std::string list::getCustomerByMagician(std::string magicianName)
+{
+	node* currNode = head;
+	std::string customerFound = "Customer not found...";
+	for (int i = 0; i < count; i++)
+	{
+		if (currNode->data == magicianName)
+		{
+			customerFound = getData(i - 2);
+			return customerFound;
+		}
+		currNode = currNode->next;
+	}
+	return customerFound;
+}
+
+std::string list::getHolidayByMagician(std::string magicianName)
+{
+	node* currNode = head;
+	std::string holidayFound = "Customer not found...";
+	for (int i = 0; i < count; i++)
+	{
+		if (currNode->data == magicianName)
+		{
+			holidayFound = getData(i - 1);
+			return holidayFound;
+		}
+		currNode = currNode->next;
+	}
+	return holidayFound;
+}
+
+std::string list::getCustomerWaiting(std::string holidayName)
 {
 	node* currNode = head;
 	std::string customerName;
@@ -328,7 +362,7 @@ void list::printLinkedList()
 	node* currentNode = head;
 	std::string space = " ";
 	space.resize(20, ' ');
-	while (currentNode->next != nullptr)
+	for (int i = 0; i < count ; i++)
 	{
 		std::cout << space << currentNode->data << std::endl;
 		currentNode = currentNode->next;
@@ -338,23 +372,39 @@ void list::printLinkedList()
 void list::printListCus_Hol()
 {
 	node* currentNode = head;
-	node* nextNode = currentNode->next;
-	
-	while (currentNode->next != nullptr )
+	for (int i = 0; i < count / 3; i++)
 	{
-		std::string c = currentNode->data;
-		c.resize(20, ' ');
-		std::string h = nextNode->data;
-		h.resize(20, ' ');
-		std::cout << "CUSTOMER: " << c << "HOLIDAY: " << h << std::endl;
-		currentNode = nextNode->next;
-		if (currentNode->next != nullptr)
-		{
-			nextNode = currentNode->next;
-		}
-		else
-		{
-			break;
-		}
+		std::string name = currentNode->data;
+		name.resize(20, ' ');
+		std::cout << "CUSTOMER: " << name;
+		currentNode = currentNode->next;
+		std::string holiday = currentNode->data;
+		holiday.resize(20, ' ');
+		std::cout << "HOLIDAY: " << holiday;
+		currentNode = currentNode->next;
+		std::string magician = currentNode->data;
+		magician.resize(20, ' ');
+		std::cout << "MAGICIAN: " << magician << std::endl;
+		currentNode = currentNode->next;
+	}
+}
+
+void list::printToOutputFile(std::ofstream& outputFile)
+{
+	node* currNode = head;
+	for (int i = 0; i < count / 3; i++)
+	{
+		std::string name = currNode->data;
+		name.resize(20, ' ');
+		outputFile << "CUSTOMER: " << name;
+		currNode = currNode->next;
+		std::string holiday = currNode->data;
+		holiday.resize(20, ' ');
+		outputFile << "HOLIDAY: " << holiday;
+		currNode = currNode->next;
+		std::string magician = currNode->data;
+		magician.resize(20, ' ');
+		outputFile << "MAGICIAN: " << magician << std::endl;
+		currNode = currNode->next;
 	}
 }

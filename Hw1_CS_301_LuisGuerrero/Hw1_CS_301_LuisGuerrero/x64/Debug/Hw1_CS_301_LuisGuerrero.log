@@ -1,6 +1,2 @@
 ﻿  main.cpp
-C:\Users\Diego Admin\Documents\GitHub\Hw1_CS_301_LuisGuerrero\Hw1_CS_301_LuisGuerrero\Hw1_CS_301_LuisGuerrero\list.h(281): warning C4172: returning address of local variable or temporary: customerName
-C:\Users\Diego Admin\Documents\GitHub\Hw1_CS_301_LuisGuerrero\Hw1_CS_301_LuisGuerrero\Hw1_CS_301_LuisGuerrero\list.h(285): warning C4172: returning address of local variable or temporary: customerName
-C:\Users\Diego Admin\Documents\GitHub\Hw1_CS_301_LuisGuerrero\Hw1_CS_301_LuisGuerrero\Hw1_CS_301_LuisGuerrero\list.h(264): warning C4172: returning address of local variable or temporary: magicianFound
-C:\Users\Diego Admin\Documents\GitHub\Hw1_CS_301_LuisGuerrero\Hw1_CS_301_LuisGuerrero\Hw1_CS_301_LuisGuerrero\list.h(268): warning C4172: returning address of local variable or temporary: magicianFound
   Hw1_CS_301_LuisGuerrero.vcxproj -> C:\Users\Diego Admin\Documents\GitHub\Hw1_CS_301_LuisGuerrero\Hw1_CS_301_LuisGuerrero\x64\Debug\Hw1_CS_301_LuisGuerrero.exe

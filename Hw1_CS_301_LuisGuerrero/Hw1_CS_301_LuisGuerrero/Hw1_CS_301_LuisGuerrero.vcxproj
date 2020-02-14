@@ -144,6 +144,7 @@
     <Text Include="Holidays.txt" />
     <Text Include="Magic1.txt" />
     <Text Include="Magician.txt" />
+    <Text Include="Schedule.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="list.h" />
