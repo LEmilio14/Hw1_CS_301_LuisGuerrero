@@ -16,7 +16,7 @@ public:
 	node* insertFirst(std::string&);
 	node* insertLast(std::string&);
 	void removeNode(const int);
-	void removeNodeByName(std::string&);
+	bool removeNodeByName(std::string&);
 	void removeAllNodes();
 	std::string getAvailable();
 	std::string getHoliday(std::string);
@@ -148,17 +148,18 @@ void list::removeNode(const int position)
 }
 
 
-void list::removeNodeByName(std::string& nameToDelete)
+bool list::removeNodeByName(std::string& nameToDelete)
 {
 	node* currentNode = head;
-
+	bool removed = false;
 	for (int i = 0; i < count; i++)
 	{
 		if (currentNode->data == nameToDelete)
 		{
 			
 			removeNode(i);
-			return;
+			removed = true;
+			return true;
 		}
 		else
 		{

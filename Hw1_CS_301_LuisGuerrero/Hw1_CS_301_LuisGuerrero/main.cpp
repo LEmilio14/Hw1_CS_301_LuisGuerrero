@@ -37,10 +37,12 @@ int main()
 	}
 
 	list magicianList;
+	list copyMagicianList;
 
 	while (getline(inFileN, name))
 	{
 		magicianList.insertLast(name);
+		copyMagicianList.insertLast(name);
 	}
 
 	cout << "Enter the name of the holidays file you want to open: ";
@@ -70,6 +72,8 @@ int main()
 	list bookingHoliday;
 	list bookingMagician;
 
+	bool check1, check2, check3;
+
 	do
 	{
 		system("CLS");
@@ -92,7 +96,7 @@ int main()
 				getline(cin, holidayName);
 				cout << endl;
 
-				if (magicianList.checkAvailable() == false)
+				if (copyMagicianList.checkAvailable() == false)
 				{
 					cout << "There are no magicians available" << endl;
 					cout << "Your name and holidays are currently on the waiting list..." << endl << endl;
@@ -102,7 +106,7 @@ int main()
 				}
 				else
 				{
-					magician = magicianList.getAvailable();
+					magician = copyMagicianList.getAvailable();
 
 					bookingHoliday.insertLast(customerName);
 					bookingHoliday.insertLast(holidayName);
@@ -125,7 +129,9 @@ int main()
 				cin >> userAgain;
 			} while (userAgain == 1);
 
-			//bookingHoliday.printListCus_Hol();
+			magicianList.printLinkedList();
+			copyMagicianList.printLinkedList();
+			system("pause");
 			bookingHoliday.printToOutputFile(outFile);
 			outFile << "============= transaction made =============" << endl;
 			bookingHoliday.printToOutputFile(scheduleFile);
@@ -145,14 +151,32 @@ int main()
 			cout << endl;
 
 			magicianRelocated = bookingHoliday.getMagicianByHoliday(holidayName);
-			bookingHoliday.removeNodeByName(customerName);
-			bookingHoliday.removeNodeByName(holidayName);
-			bookingHoliday.removeNodeByName(magicianRelocated);
+		
+			//bookingHoliday.removeNodeByName(customerName);
+			//bookingHoliday.removeNodeByName(holidayName);
+			//bookingHoliday.removeNodeByName(magicianRelocated);
 
+			try
+			{
+				bookingHoliday.removeNodeByName(customerName);
+				bookingHoliday.removeNodeByName(holidayName);
+				bookingHoliday.removeNodeByName(magicianRelocated);
+			}
+			catch (...)
+			{
+				cout << "ERROR";
+			}
 			bookingMagician.removeNodeByName(holidayName);
 			bookingMagician.removeNodeByName(magicianRelocated);
 
-			cout << customerName << " and " << holidayName << " were successfully removed from Schedule" << endl << endl;
+			if (bookingHoliday.removeNodeByName(customerName) == true && bookingHoliday.removeNodeByName(holidayName) == true
+				&& bookingHoliday.removeNodeByName(magicianRelocated) == true)
+			{
+				cout << customerName << " and " << holidayName << " were successfully removed from Schedule" << endl << endl;
+				system("pause");
+				cout << endl;
+			}
+
 
 			if (waitingList.getCount() != 0)
 			{
@@ -172,6 +196,7 @@ int main()
 					cout << "Customer " << waitingCustomer << " is on the waiting list for " << holidayName << endl;
 					cout << "Adding " << waitingCustomer << " to the schedule" << endl;
 					system("pause");
+					cout << endl;
 				}
 				else
 				{
@@ -210,6 +235,7 @@ int main()
 			cout << endl;
 
 			magicianList.insertLast(newMagician);
+			copyMagicianList.insertLast(newMagician);
 
 			cout << newMagician << " has been added to the Magician list!" << endl;
 
@@ -223,7 +249,7 @@ int main()
 			cout << endl;
 
 			magicianList.removeNodeByName(dropOutMagician);
-			
+			cout << endl << endl;
 			redistCustomer = bookingHoliday.getCustomerByMagician(dropOutMagician);
 			redistHoliday = bookingHoliday.getHolidayByMagician(dropOutMagician);
 
@@ -231,9 +257,9 @@ int main()
 			bookingHoliday.removeNodeByName(redistCustomer);
 			bookingHoliday.removeNodeByName(redistHoliday);
 
-			if (magicianList.checkAvailable() == true)
+			if (copyMagicianList.checkAvailable() == true)
 			{
-				magician = magicianList.getAvailable();
+				magician = copyMagicianList.getAvailable();
 
 				bookingHoliday.insertLast(redistCustomer);
 				bookingHoliday.insertLast(redistHoliday);
@@ -257,11 +283,12 @@ int main()
 			system("CLS");
 			do
 			{
+				system("CLS");
 				space = " ";
 				space.resize(20, ' ');
-				cout << space << "[1] Search By Magician";
-				cout << space << "[2] Search By Holiday";
-				cout << space << "[3] Print the Whole Schedule";
+				cout << space << "[1] Search By Magician" << endl;
+				cout << space << "[2] Search By Holiday" << endl;
+				cout << space << "[3] Print the Whole Schedule" << endl;
 				cout << space << "[4] Back" << endl << endl;
 				cout << "Which Search Option you would like: ";
 				cin >> userOption;
@@ -295,7 +322,7 @@ int main()
 					customerName.resize(20, ' ');
 					holidayName.resize(20, ' ');
 
-					cout << "CUSTOMER: " << customerName << "HOLIDAY: " << holidayName << "MAGICIAN: " << userMagician << endl;
+					cout << "CUSTOMER: " << customerName << "HOLIDAY: " << userHoliday << "MAGICIAN: " << magician << endl;
 					break;
 				case 3:
 					system("CLS");

@@ -1,3 +1,1 @@
-CUSTOMER: Emilio G            HOLIDAY: Independence Day    MAGICIAN: Dennis Kyriakos     
-CUSTOMER: Anahi P             HOLIDAY: Labor Day           MAGICIAN: Dan Chan            
-CUSTOMER: Maria F             HOLIDAY: MLK Day             MAGICIAN: Dorian Rhodell      
+CUSTOMER: Labor Day           HOLIDAY: Dennis Kyriakos     MAGICIAN: Anahi P             
