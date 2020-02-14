@@ -16,7 +16,7 @@ int main()
 	ofstream outFile, scheduleFile;
 	string inFileName, outFileName, name, customerName, magician, newMagician, dropOutMagician;
 	string inFileHol, outFileHoli, holidayName, holidays, magicianRelocated, waitingCustomer;
-	string redistCustomer, redistHoliday;
+	string redistCustomer, redistHoliday, space, userMagician, userHoliday;
 	int userOption, userAgain = 0;
 
 	outFile.open("Magic1.txt");
@@ -144,7 +144,7 @@ int main()
 			getline(cin, holidayName);
 			cout << endl;
 
-			magicianRelocated = bookingHoliday.getMagician(holidayName);
+			magicianRelocated = bookingHoliday.getMagicianByHoliday(holidayName);
 			bookingHoliday.removeNodeByName(customerName);
 			bookingHoliday.removeNodeByName(holidayName);
 			bookingHoliday.removeNodeByName(magicianRelocated);
@@ -255,24 +255,57 @@ int main()
 			break;
 		case 5:
 			system("CLS");
-			
-			string space = " ";
-			space.resize(20, ' ');
-			cout << space << "[1] Search By Magician";
-			cout << space << "[2] Search By Holiday" << endl << endl;
-			cout << "Which Search Option you would like: ";
-			cin >> userOption;
-
-			switch (userOption)
+			do
 			{
-			case 1:
-				break;
-			case 2:
-				break;
+				space = " ";
+				space.resize(20, ' ');
+				cout << space << "[1] Search By Magician";
+				cout << space << "[2] Search By Holiday";
+				cout << space << "[3] Print the Whole Schedule";
+				cout << space << "[4] Back" << endl << endl;
+				cout << "Which Search Option you would like: ";
+				cin >> userOption;
+				cout << endl;
+				switch (userOption)
+				{
+				case 1:
+					system("CLS");
 
-			default:
-				break;
-			}
+					cout << "Enter the name of the magician you want to search: ";
+					getline(cin.ignore(), userMagician);
+					cout << endl << endl;
+
+					customerName = bookingHoliday.getCustomerByMagician(userMagician);
+					holidayName = bookingHoliday.getHolidayByMagician(userMagician);
+					customerName.resize(20, ' ');
+					holidayName.resize(20, ' ');
+
+					cout << "CUSTOMER: " << customerName << "HOLIDAY: " << holidayName << "MAGICIAN: " << userMagician << endl;
+
+					break;
+				case 2:
+					system("CLS");
+
+					cout << "Enter the name of the holiday you want to search: ";
+					getline(cin.ignore(), userHoliday);
+					cout << endl;
+
+					magician = bookingHoliday.getMagicianByHoliday(userHoliday);
+					customerName = bookingHoliday.getCustomerByMagician(magician);
+					customerName.resize(20, ' ');
+					holidayName.resize(20, ' ');
+
+					cout << "CUSTOMER: " << customerName << "HOLIDAY: " << holidayName << "MAGICIAN: " << userMagician << endl;
+					break;
+				case 3:
+					system("CLS");
+					bookingHoliday.printListCus_Hol();
+					system("pause");
+					break;
+				default:
+					break;
+				}
+			} while (userOption != 4);
 		case 6:
 			system("CLS");
 			break;

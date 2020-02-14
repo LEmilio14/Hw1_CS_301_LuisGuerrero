@@ -1,10 +1,4 @@
+CUSTOMER: Emilio G            HOLIDAY: Independence Day    MAGICIAN: Dennis Kyriakos     
 CUSTOMER: Anahi P             HOLIDAY: Labor Day           MAGICIAN: Dan Chan            
-CUSTOMER: Maria F             HOLIDAY: Columbus Day        MAGICIAN: Dorian Rhodell      
-CUSTOMER: Vero G              HOLIDAY: Veterans' Day       MAGICIAN: Ryan Kane           
-CUSTOMER: Alex G              HOLIDAY: Christmas Day       MAGICIAN: Glen Michelette     
-CUSTOMER: Jim S               HOLIDAY: President's Day     MAGICIAN: Mark Robinson       
-CUSTOMER: Juanita W           HOLIDAY: New Year's Day      MAGICIAN: Sebastian Boswell   
-CUSTOMER: Pedro B             HOLIDAY: MLK Day             MAGICIAN: Gabriel Holmes      
-CUSTOMER: Carlos P            HOLIDAY: Thanksgiving Day    MAGICIAN: Alan                
-CUSTOMER: Blanca D            HOLIDAY: Independence Day    MAGICIAN: Dennis Kyriakos     
-CUSTOMER: Jaime P             HOLIDAY: Memorial Day        MAGICIAN: Heather Rogers      
+CUSTOMER: Maria F             HOLIDAY: MLK Day             MAGICIAN: Dorian Rhodell      
+============= transaction made =============

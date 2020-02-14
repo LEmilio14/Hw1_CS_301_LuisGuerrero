@@ -22,7 +22,7 @@ public:
 	std::string getHoliday(std::string);
 	std::string& getData(const int);
 	std::string& getFirstData();
-	std::string getMagician(std::string);
+	std::string getMagicianByHoliday(std::string);
 	std::string getCustomerByMagician(std::string);
 	std::string getHolidayByMagician(std::string);
 	std::string getCustomerWaiting(std::string);
@@ -253,7 +253,7 @@ std::string& list::getFirstData()
 	return getData(0);
 }
 
-std::string list::getMagician(std::string holiday)
+std::string list::getMagicianByHoliday(std::string holiday)
 {
 	node* currNode = head;
 	std::string magicianFound;
