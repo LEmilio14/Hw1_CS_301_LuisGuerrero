@@ -1,6 +1,2 @@
 ﻿  main.cpp
-C:\Users\Diego Admin\Documents\GitHub\Hw1_CS_301_LuisGuerrero\Hw1_CS_301_LuisGuerrero\Hw1_CS_301_LuisGuerrero\main.cpp(75,15): warning C4101: 'check2': unreferenced local variable
-C:\Users\Diego Admin\Documents\GitHub\Hw1_CS_301_LuisGuerrero\Hw1_CS_301_LuisGuerrero\Hw1_CS_301_LuisGuerrero\main.cpp(75,7): warning C4101: 'check1': unreferenced local variable
-C:\Users\Diego Admin\Documents\GitHub\Hw1_CS_301_LuisGuerrero\Hw1_CS_301_LuisGuerrero\Hw1_CS_301_LuisGuerrero\main.cpp(75,23): warning C4101: 'check3': unreferenced local variable
-C:\Users\Diego Admin\Documents\GitHub\Hw1_CS_301_LuisGuerrero\Hw1_CS_301_LuisGuerrero\Hw1_CS_301_LuisGuerrero\list.h(170): warning C4715: 'list::removeNodeByName': not all control paths return a value
   Hw1_CS_301_LuisGuerrero.vcxproj -> C:\Users\Diego Admin\Documents\GitHub\Hw1_CS_301_LuisGuerrero\Hw1_CS_301_LuisGuerrero\x64\Debug\Hw1_CS_301_LuisGuerrero.exe

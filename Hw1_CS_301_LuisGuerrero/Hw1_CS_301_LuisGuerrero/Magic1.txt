@@ -1,5 +1,5 @@
-CUSTOMER: Emilio Guerrero     HOLIDAY: Labor Day           MAGICIAN: Dennis Kyriakos     
-CUSTOMER: Anahi P             HOLIDAY: MLK Day             MAGICIAN: Dan Chan            
+CUSTOMER: Emilio G            HOLIDAY: Labor Day           MAGICIAN: Dennis Kyriakos     
+CUSTOMER: Anahi P             HOLIDAY: Memorial Day        MAGICIAN: Dan Chan            
 ============= transaction made =============
-CUSTOMER: Labor Day           HOLIDAY: Dennis Kyriakos     MAGICIAN: Anahi P             
+CUSTOMER: Emilio G            HOLIDAY: Labor Day           MAGICIAN: Dennis Kyriakos     
 ============= transaction made =============

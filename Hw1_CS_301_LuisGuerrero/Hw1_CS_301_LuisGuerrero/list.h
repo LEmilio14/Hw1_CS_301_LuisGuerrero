@@ -16,7 +16,7 @@ public:
 	node* insertFirst(std::string&);
 	node* insertLast(std::string&);
 	void removeNode(const int);
-	bool removeNodeByName(std::string&);
+	void removeNodeByName(std::string&);
 	void removeAllNodes();
 	std::string getAvailable();
 	std::string getHoliday(std::string);
@@ -28,7 +28,7 @@ public:
 	std::string getCustomerWaiting(std::string);
 	bool checkAvailable();
 	bool checkHolidayWaiting(std::string);
-
+	bool checkIfFound(std::string&);
 	void printLinkedList();
 	void printListCus_Hol();
 	void printToOutputFile(std::ofstream&);
@@ -148,18 +148,17 @@ void list::removeNode(const int position)
 }
 
 
-bool list::removeNodeByName(std::string& nameToDelete)
+void list::removeNodeByName(std::string& nameToDelete)
 {
 	node* currentNode = head;
-	bool removed = false;
+	
 	for (int i = 0; i < count; i++)
 	{
 		if (currentNode->data == nameToDelete)
 		{
 			
 			removeNode(i);
-			removed = true;
-			return true;
+			return;
 		}
 		else
 		{
@@ -355,6 +354,25 @@ bool list::checkHolidayWaiting( std::string holidayName)
 		currNode = currNode->next;
 	}
 	return check;
+}
+
+bool list::checkIfFound(std::string& nameToFound)
+{
+	node* currentNode = head;
+	bool found = false;
+	for (int i = 0; i < count; i++)
+	{
+		if (currentNode->data == nameToFound)
+		{
+			found = true;
+			return found;
+		}
+		else
+		{
+			currentNode = currentNode->next;
+		}
+	}
+	return found;
 }
 
 

@@ -152,29 +152,28 @@ int main()
 
 			magicianRelocated = bookingHoliday.getMagicianByHoliday(holidayName);
 		
-			//bookingHoliday.removeNodeByName(customerName);
-			//bookingHoliday.removeNodeByName(holidayName);
-			//bookingHoliday.removeNodeByName(magicianRelocated);
-
-			try
+			check1 = bookingHoliday.checkIfFound(customerName);
+			check2 = bookingHoliday.checkIfFound(holidayName);
+			check3 = bookingHoliday.checkIfFound(magicianRelocated);
+			if (check1 == true && check2 == true && check3 == true)
 			{
 				bookingHoliday.removeNodeByName(customerName);
 				bookingHoliday.removeNodeByName(holidayName);
 				bookingHoliday.removeNodeByName(magicianRelocated);
-			}
-			catch (...)
-			{
-				cout << "ERROR";
-			}
-			bookingMagician.removeNodeByName(holidayName);
-			bookingMagician.removeNodeByName(magicianRelocated);
 
-			if (bookingHoliday.removeNodeByName(customerName) == true && bookingHoliday.removeNodeByName(holidayName) == true
-				&& bookingHoliday.removeNodeByName(magicianRelocated) == true)
-			{
+
+				bookingMagician.removeNodeByName(holidayName);
+				bookingMagician.removeNodeByName(magicianRelocated);
+
+
 				cout << customerName << " and " << holidayName << " were successfully removed from Schedule" << endl << endl;
 				system("pause");
 				cout << endl;
+			}
+			else
+			{
+				cout << "Data could not be found" << endl;
+				system("pause");
 			}
 
 
